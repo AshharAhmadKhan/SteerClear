@@ -65,6 +65,14 @@ app.use((req, res) => {
     });
 });
 
+import roadmapRoutes from './api/routes/roadmap.routes.js';
+
+// ... existing code ...
+
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/roadmap', roadmapRoutes); // ADD THIS LINE
+
 // ============================================
 // ERROR HANDLER
 // ============================================
