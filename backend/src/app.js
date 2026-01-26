@@ -46,7 +46,18 @@ app.get('/health', (req, res) => {
 // API routes
 app.use('/api/auth', authRoutes);
 
-// 404 handler
+// Test premium route (requires authentication + valid trial)
+import { authenticateToken } from './api/middleware/auth.middleware.js';
+import { requirePremiumAccess } from './api/middleware/trial.middleware.js';
+
+app.get('/api/premium/test', authenticateToken, requirePremiumAccess, (req, res) => {
+    res.status(200).json({
+        message: 'Premium access granted',
+        user: req.user.toJSON(),
+    });
+});
+
+// 404 handler (MUST BE LAST ROUTE)
 app.use((req, res) => {
     res.status(404).json({
         error: 'Route not found',
