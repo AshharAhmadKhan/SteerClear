@@ -1,0 +1,19 @@
+# Environment variables (API keys, secrets)
+.env
+.env.local
+
+# Node modules (if we add backend later)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Build outputs (if we add React later)
+dist/
+build/
+.next/
