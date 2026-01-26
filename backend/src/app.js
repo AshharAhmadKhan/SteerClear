@@ -5,6 +5,9 @@ import express from 'express';
 import cors from 'cors';
 import { config } from './infrastructure/config/index.js';
 import authRoutes from './api/routes/auth.routes.js';
+import roadmapRoutes from './api/routes/roadmap.routes.js';
+import { authenticateToken } from './api/middleware/auth.middleware.js';
+import { requirePremiumAccess } from './api/middleware/trial.middleware.js';
 
 const app = express();
 
@@ -45,11 +48,9 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes);
+app.use('/api/roadmap', roadmapRoutes);
 
 // Test premium route (requires authentication + valid trial)
-import { authenticateToken } from './api/middleware/auth.middleware.js';
-import { requirePremiumAccess } from './api/middleware/trial.middleware.js';
-
 app.get('/api/premium/test', authenticateToken, requirePremiumAccess, (req, res) => {
     res.status(200).json({
         message: 'Premium access granted',
@@ -64,14 +65,6 @@ app.use((req, res) => {
         path: req.path,
     });
 });
-
-import roadmapRoutes from './api/routes/roadmap.routes.js';
-
-// ... existing code ...
-
-// API routes
-app.use('/api/auth', authRoutes);
-app.use('/api/roadmap', roadmapRoutes); // ADD THIS LINE
 
 // ============================================
 // ERROR HANDLER
