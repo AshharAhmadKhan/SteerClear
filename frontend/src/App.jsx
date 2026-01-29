@@ -1,29 +1,55 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useAuthStore } from './stores/authStore';
 import LoginPage from './features/auth/components/LoginPage';
 import RegisterPage from './features/auth/components/RegisterPage';
 import Dashboard from './features/roadmap/components/Dashboard';
+import CreateRoadmap from './features/roadmap/components/CreateRoadmap';
+import UpgradePage from './features/auth/components/UpgradePage';
+import { useAuthStore } from './stores/authStore';
 
 function ProtectedRoute({ children }) {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  const token = useAuthStore((state) => state.token);
+  return token ? children : <Navigate to="/login" />;
 }
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        {/* Public routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/dashboard"
+        
+        {/* Protected routes */}
+        <Route 
+          path="/dashboard" 
           element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
-          }
+          } 
         />
+        <Route 
+          path="/roadmap/create" 
+          element={
+            <ProtectedRoute>
+              <CreateRoadmap />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/upgrade" 
+          element={
+            <ProtectedRoute>
+              <UpgradePage />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Default redirect */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        
+        {/* Catch-all for unmatched routes */}
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );

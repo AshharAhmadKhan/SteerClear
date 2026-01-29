@@ -48,7 +48,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes);
-app.use('/api/roadmap', roadmapRoutes);
+app.use('/api/roadmaps', roadmapRoutes);
 
 // Test premium route (requires authentication + valid trial)
 app.get('/api/premium/test', authenticateToken, requirePremiumAccess, (req, res) => {
