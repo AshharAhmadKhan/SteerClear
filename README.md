@@ -1,4 +1,4 @@
-# SteerClear 🎯
+# SteerClear 
 
 > **Personalized UPSC Preparation Planner** — A SaaS platform that generates customized study roadmaps for UPSC CSE aspirants.
 
