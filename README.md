@@ -1,8 +1,8 @@
 # SteerClear
 
-> UPSC prep planner that actually helped my friend clear their exam
+> UPSC prep planner that generates personalized study roadmaps based on exam date and available hours
 
-I built this after watching my friend struggle with UPSC preparation — they had no idea how to structure 2 years of study across 20+ subjects. SteerClear generates a personalized roadmap based on your exam date, daily study hours, and current level.
+I built this to solve a common problem — UPSC aspirants have tons of resources but no clear roadmap of *what* to study *when*. Most guides say "cover these subjects" but don't give you a day-by-day plan based on your actual timeline.
 
 ## What it does
 
@@ -10,16 +10,16 @@ I built this after watching my friend struggle with UPSC preparation — they ha
 - Generates a complete phase-wise roadmap (Foundation → Building → Revision)
 - Allocates hours across all UPSC subjects intelligently
 - Shows you exactly what to study when
-- Includes a 5-day free trial (because building payment systems is interesting)
+- Includes a 5-day free trial system
 
 ## Why I built this
 
-My friend asked "how do I prepare for UPSC in 18 months?" and I realized there's no tool that gives you a concrete daily plan. Most resources say "study these subjects" but don't tell you *when* or *for how long*.
+Wanted to build a complete SaaS product from scratch — not just backend APIs or frontend components, but the whole thing: auth, trial system, payment flow, algorithm, and deployment.
 
-Also wanted to:
-- Build a complete SaaS with auth + trial system + payments
+Also:
 - Learn full-stack development beyond CRUD
-- Actually solve a real problem (my friend used this and it helped)
+- Understand how trial systems work without payment gateways
+- Build something that solves an actual problem (UPSC prep is genuinely overwhelming)
 
 ## Tech Stack
 
@@ -30,7 +30,7 @@ Also wanted to:
 
 **Backend:**
 - Node.js + Express
-- PostgreSQL (because roadmaps need structured data)
+- PostgreSQL
 - JWT authentication
 
 **Features:**
@@ -132,7 +132,7 @@ SteerClear/
 - PostgreSQL for relational data (users → roadmaps → subjects)
 - React state management for complex dashboards
 - Deployment on Vercel (frontend) + Railway (backend)
-- Actual user feedback (my friend suggested 3 features I added)
+- Algorithm design for educational content planning
 
 ## Deployment
 
@@ -151,7 +151,7 @@ GET  /api/roadmap/user/:userId
 
 ## Contributing
 
-This is actively being improved! If you're a UPSC aspirant and have feedback, please open an issue or PR.
+This is actively being improved! If you have feedback or suggestions, feel free to open an issue or PR.
 
 ## License
 
@@ -166,13 +166,11 @@ Ashhar Ahmad Khan
 
 ---
 
-If you're preparing for UPSC and this helped, let me know! Would love to hear your feedback.
+Built this to learn full-stack SaaS development.
 
 Give it a ⭐️ if you found it useful!
 ```
 
----
-
-**For the repo description**, change it to:
+**For the repo description:**
 ```
-UPSC prep planner that generates personalized study roadmaps — built this after my friend asked "how do I prepare in 18 months?"
+UPSC prep planner that generates personalized study roadmaps — built this to learn full-stack SaaS development
