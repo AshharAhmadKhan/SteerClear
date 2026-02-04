@@ -170,7 +170,3 @@ Built this to learn full-stack SaaS development.
 
 Give it a ⭐️ if you found it useful!
 ```
-
-**For the repo description:**
-```
-UPSC prep planner that generates personalized study roadmaps — built this to learn full-stack SaaS development
