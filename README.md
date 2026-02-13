@@ -146,7 +146,6 @@ SteerClear/
 - **Backend:** Render (https://steerclear-backend.onrender.com)
 - **Database:** Neon.tech (PostgreSQL)
 
-**All deployed FREE without credit card!**
 
 ## API Endpoints
 ```
