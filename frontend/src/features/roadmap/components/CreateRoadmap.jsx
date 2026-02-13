@@ -20,7 +20,7 @@ export default function CreateRoadmap() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/roadmaps/generate', {
+      const response = await fetch('https://steerclear-backend.onrender.com/api/roadmaps/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

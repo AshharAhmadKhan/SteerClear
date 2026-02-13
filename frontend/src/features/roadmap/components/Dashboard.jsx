@@ -16,7 +16,7 @@ export default function Dashboard() {
   const fetchRoadmap = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/roadmaps/current', {
+      const response = await fetch('https://steerclear-backend.onrender.com/api/roadmaps/current', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -49,7 +49,7 @@ export default function Dashboard() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/roadmaps/current', {
+      const response = await fetch('https://steerclear-backend.onrender.com/api/roadmaps/current', {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
