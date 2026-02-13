@@ -30,7 +30,7 @@ Also:
 
 **Backend:**
 - Node.js + Express
-- PostgreSQL
+- PostgreSQL (Neon.tech)
 - JWT authentication
 
 **Features:**
@@ -69,7 +69,7 @@ cd backend
 npm install
 cp .env.example .env
 # Update .env with your database credentials
-npm start  # Runs on :5000
+npm start  # Runs on :3000
 
 # Frontend (new terminal)
 cd ../frontend
@@ -81,7 +81,8 @@ npm run dev  # Runs on :5173
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/steerclear
 JWT_SECRET=your-secret-key
-PORT=5000
+PORT=3000
+FRONTEND_URL=http://localhost:5173
 ```
 
 ## Project Structure
@@ -118,6 +119,7 @@ SteerClear/
 - ✅ Subject allocation
 - ✅ Responsive dashboard
 - ✅ Landing page
+- ✅ Production deployment
 
 **Coming Soon:**
 - [ ] Razorpay payment integration
@@ -131,15 +133,20 @@ SteerClear/
 - Building a SaaS trial system without Stripe (using JWT expiry)
 - PostgreSQL for relational data (users → roadmaps → subjects)
 - React state management for complex dashboards
-- Deployment on Vercel (frontend) + Railway (backend)
+- Deployment on Vercel (frontend) + Render (backend)
 - Algorithm design for educational content planning
+- Free deployment workflow without credit cards
 
 ## Deployment
 
-**Live:** [steer-clear.vercel.app](https://steer-clear.vercel.app)
+**🚀 Live:** [https://steerclear.vercel.app](https://steerclear.vercel.app)
 
-**Frontend:** Vercel  
-**Backend:** Railway (PostgreSQL + Express)
+**Stack:**
+- **Frontend:** Vercel (https://steerclear.vercel.app)
+- **Backend:** Render (https://steerclear-backend.onrender.com)
+- **Database:** Neon.tech (PostgreSQL)
+
+**All deployed FREE without credit card!**
 
 ## API Endpoints
 ```
@@ -166,7 +173,6 @@ Ashhar Ahmad Khan
 
 ---
 
-Built this to learn full-stack SaaS development.
+Built this to learn full-stack SaaS development and free deployment strategies.
 
 Give it a ⭐️ if you found it useful!
-```
