@@ -1,177 +1,114 @@
 # SteerClear
 
-> UPSC prep planner that generates personalized study roadmaps based on exam date and available hours
+UPSC preparation is overwhelming, not because the syllabus is hard, but because you never know what to study next. SteerClear fixes that. You tell it your exam date, how many hours a day you can give, and your current level. It builds a month-by-month study roadmap across all 7 UPSC subjects so you always know exactly what to do.
 
-I built this to solve a common problem — UPSC aspirants have tons of resources but no clear roadmap of *what* to study *when*. Most guides say "cover these subjects" but don't give you a day-by-day plan based on your actual timeline.
+This is my personal project, built to solve a real problem I kept seeing: aspirants spending more time planning their preparation than actually preparing.
 
 ## What it does
 
-- Takes 3 inputs: target exam date, daily hours available, preparation level
-- Generates a complete phase-wise roadmap (Foundation → Building → Revision)
-- Allocates hours across all UPSC subjects intelligently
-- Shows you exactly what to study when
-- Includes a 5-day free trial system
+SteerClear is a roadmap generator for UPSC CSE Prelims. You create an account, fill in three inputs, and get a personalized plan that allocates your available hours across History, Geography, Polity, Economy, Science & Technology, Current Affairs, and CSAT, weighted by each subject's actual exam importance.
 
-## Why I built this
-
-Wanted to build a complete SaaS product from scratch — not just backend APIs or frontend components, but the whole thing: auth, trial system, payment flow, algorithm, and deployment.
-
-Also:
-- Learn full-stack development beyond CRUD
-- Understand how trial systems work without payment gateways
-- Build something that solves an actual problem (UPSC prep is genuinely overwhelming)
-
-## Tech Stack
-
-**Frontend:**
-- React 18 + Vite
-- Tailwind CSS
-- React Router
-
-**Backend:**
-- Node.js + Express
-- PostgreSQL (Neon.tech)
-- JWT authentication
-
-**Features:**
-- Trial system (5 free days, no card required)
-- Razorpay integration (planned)
-- Responsive dashboard
-
-## How it works
-
-1. User enters: exam date, daily hours, prep level
-2. Backend calculates total available hours
-3. Allocates hours across subjects based on UPSC syllabus weightage
-4. Divides into 3 phases: Foundation (40%) → Building (35%) → Revision (25%)
-5. Returns week-by-week roadmap with subject-wise breakdown
-
-The algorithm considers:
-- Subject difficulty and UPSC weightage
-- User's current level (beginner needs more foundation time)
-- Realistic daily study hours (accounts for breaks)
-- Revision multipliers for better retention
-
-## Quick Start
-
-**Prerequisites:**
-- Node.js 18+
-- PostgreSQL
-
-**Setup:**
-```bash
-# Clone
-git clone https://github.com/AshharAhmadKhan/SteerClear.git
-cd SteerClear
-
-# Backend
-cd backend
-npm install
-cp .env.example .env
-# Update .env with your database credentials
-npm start  # Runs on :3000
-
-# Frontend (new terminal)
-cd ../frontend
-npm install
-npm run dev  # Runs on :5173
-```
-
-**Environment Variables:**
-```env
-DATABASE_URL=postgresql://user:password@localhost:5432/steerclear
-JWT_SECRET=your-secret-key
-PORT=3000
-FRONTEND_URL=http://localhost:5173
-```
-
-## Project Structure
-```
-SteerClear/
-├── backend/
-│   ├── config/         # DB connection
-│   ├── routes/         # API routes
-│   ├── controllers/    # Business logic
-│   └── middleware/     # Auth, validation
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   │   ├── Dashboard.jsx    # Main roadmap view
-│   │   │   ├── Generate.jsx     # Input form
-│   │   │   └── Landing.jsx
-│   │   └── services/            # API calls
-│   └── public/
-│
-├── landing/            # Marketing page
-├── PRD.md             # Product requirements
-└── TRD.md             # Technical design
-```
+The plan adapts to your timeline. Short on time? It compresses into an intensive phase. Have 8+ months? It spreads across Foundation → Building → Mastery → Revision phases. It also tells you your syllabus coverage percentage so you know upfront if your schedule is realistic.
 
 ## Features
 
-**Current:**
-- ✅ User authentication (register/login)
-- ✅ Trial system (5 days free)
-- ✅ Roadmap generation algorithm
-- ✅ Phase-wise planning
-- ✅ Subject allocation
-- ✅ Responsive dashboard
-- ✅ Landing page
-- ✅ Production deployment
+- User registration and login with JWT authentication
+- 5-day free trial, then ₹999 for 6 months
+- Roadmap generation based on exam date, daily hours, and preparation level
+- Month-by-month plan with subject-wise hour allocation
+- Phase-based learning (Foundation, Building, Mastery, Revision)
+- Syllabus coverage estimate with status (Excellent / Good / Needs More Time)
+- Trial countdown on dashboard
+- Delete and regenerate roadmap anytime
 
-**Coming Soon:**
-- [ ] Razorpay payment integration
-- [ ] Progress tracking (mark topics as done)
-- [ ] Email reminders
-- [ ] Export roadmap as PDF
-- [ ] Mobile app
+## How to set it up
 
-## What I learned
+You'll need Node.js 18+, PostgreSQL (or a [Neon](https://neon.tech) database), and npm.
 
-- Building a SaaS trial system without Stripe (using JWT expiry)
-- PostgreSQL for relational data (users → roadmaps → subjects)
-- React state management for complex dashboards
-- Deployment on Vercel (frontend) + Render (backend)
-- Algorithm design for educational content planning
-- Free deployment workflow without credit cards
-
-## Deployment
-
-**🚀 Live:** [https://steerclear.vercel.app](https://steerclear.vercel.app)
-
-**Stack:**
-- **Frontend:** Vercel (https://steerclear.vercel.app)
-- **Backend:** Render (https://steerclear-backend.onrender.com)
-- **Database:** Neon.tech (PostgreSQL)
-
-
-## API Endpoints
-```
-POST /api/auth/register
-POST /api/auth/login
-POST /api/roadmap/generate
-GET  /api/roadmap/user/:userId
+**1. Clone the repo**
+```bash
+git clone https://github.com/your-username/steerclear.git
+cd steerclear
 ```
 
-## Contributing
+**2. Set up the database**
 
-This is actively being improved! If you have feedback or suggestions, feel free to open an issue or PR.
+Run the schema against your PostgreSQL instance:
+```bash
+psql -U postgres -d your_database -f backend/database/schema.sql
+```
 
-## License
+**3. Configure the backend**
 
-MIT — use it however you want.
+```bash
+cd backend
+cp .env.example .env
+```
 
-## Contact
+Fill in your `.env`:
+```
+PORT=3000
+NODE_ENV=development
+DATABASE_URL=postgresql://user:password@host:5432/database
+JWT_SECRET=your-secret-key-here
+TRIAL_DURATION_DAYS=5
+```
 
-Ashhar Ahmad Khan  
-📧 itzashhar@gmail.com  
-💼 [LinkedIn](https://linkedin.com/in/ashhar-ahmad-khan)  
-🐙 [GitHub](https://github.com/AshharAhmadKhan)
+**4. Start the backend**
+```bash
+npm install
+npm run dev
+```
 
----
+**5. Start the frontend**
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
 
-Built this to learn full-stack SaaS development and free deployment strategies.
+Frontend runs at `http://localhost:5173`, backend at `http://localhost:3000`.
 
-Give it a ⭐️ if you found it useful!
+## How the roadmap generation works
+
+When you submit your inputs, here's what actually happens:
+
+1. It calculates total hours available between today and your exam date
+2. A level multiplier is applied: beginners get 75% efficiency (more time needed), advanced get 120%
+3. A 10% buffer is kept for flexibility
+4. Hours are distributed across subjects by their exam weightage (Polity gets 20%, History/Geography/Economy/Current Affairs get 15% each, Science and CSAT get 10% each)
+5. The timeline is split into phases based on how many months you have
+6. Your coverage percentage is calculated against the 1000-hour industry benchmark
+
+The algorithm is intentionally simple for the MVP. The goal was a useful plan fast, not a perfect one.
+
+## Tech stack
+
+**Backend** - Node.js, Express 5, PostgreSQL, JWT, bcrypt, Neon (serverless Postgres)
+
+**Frontend** - React 19, Vite, Tailwind CSS, Zustand, React Router
+
+## Project structure
+
+```
+steerclear/
+├── backend/
+│   ├── database/           # SQL schema
+│   └── src/
+│       ├── api/            # Routes, controllers, middleware
+│       ├── data/           # Models and repositories
+│       ├── domain/         # Roadmap generator + UPSC syllabus data
+│       └── infrastructure/ # DB connection, JWT, password utils, config
+└── frontend/
+    └── src/
+        ├── features/       # Auth and roadmap pages
+        └── stores/         # Zustand auth state
+```
+
+## What's not built yet
+
+- Payment integration (the upgrade button exists, Razorpay/Stripe not wired in yet)
+- Daily task breakdown within each month
+- Multiple exam types (only UPSC CSE Prelims for now)
+- Progress tracking
+- Mobile app
